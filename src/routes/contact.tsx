@@ -1,14 +1,8 @@
-import { Form } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
+import { IContact } from "../contacts";
 
 export default function Contact() {
-  const contact = {
-    first: "Your",
-    last: "Name",
-    avatar: "https://placekitten.com/g/200/200",
-    twitter: "your_handle",
-    notes: "Some notes",
-    favorite: true,
-  };
+  const { contact } = useLoaderData() as { contact: IContact };
 
   return (
     <div id="contact">
@@ -59,7 +53,7 @@ export default function Contact() {
   );
 }
 
-function Favorite({ contact }: { contact: Record<string, unknown> }) {
+function Favorite({ contact }: { contact: IContact }) {
   // yes, this is a `let` for later
   const favorite = contact.favorite;
   return (
