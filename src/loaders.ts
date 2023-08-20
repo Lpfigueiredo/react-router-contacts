@@ -1,4 +1,4 @@
-import { Params } from "react-router-dom";
+import { LoaderFunctionArgs } from "react-router-dom";
 import { getContact, getContacts } from "./contacts";
 
 export async function rootLoader() {
@@ -6,7 +6,7 @@ export async function rootLoader() {
   return { contacts };
 }
 
-export async function contactLoader({ params }: { params: Params<string> }) {
+export async function contactLoader({ params }: LoaderFunctionArgs) {
   const contact = await getContact(params.contactId!);
   return { contact };
 }
