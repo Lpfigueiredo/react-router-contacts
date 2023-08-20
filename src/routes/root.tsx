@@ -4,6 +4,7 @@ import {
   Form,
   NavLink,
   useNavigation,
+  useSubmit,
 } from "react-router-dom";
 import { IContact } from "../contacts";
 import { useEffect } from "react";
@@ -14,6 +15,7 @@ export default function Root() {
     q: string | null;
   };
   const navigation = useNavigation();
+  const submit = useSubmit();
 
   useEffect(() => {
     (
@@ -34,6 +36,9 @@ export default function Root() {
               type="search"
               name="q"
               defaultValue={q!}
+              onChange={(event) => {
+                submit(event.currentTarget.form);
+              }}
             />
             <div id="search-spinner" aria-hidden hidden={true} />
             <div className="sr-only" aria-live="polite"></div>
