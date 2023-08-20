@@ -10,7 +10,7 @@ export interface IContact {
   avatar: string;
   twitter: string;
   notes: string;
-  favorite: true;
+  favorite: boolean;
 }
 
 export async function getContacts(query?: string) {
