@@ -3,7 +3,7 @@ import { createContact, updateContact } from "./contacts";
 
 export async function rootAction() {
   const contact = await createContact();
-  return { contact };
+  return redirect(`/contacts/${contact.id}/edit`);
 }
 
 export async function editAction({ request, params }: ActionFunctionArgs) {
