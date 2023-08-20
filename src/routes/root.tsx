@@ -6,12 +6,20 @@ import {
   useNavigation,
 } from "react-router-dom";
 import { IContact } from "../contacts";
+import { useEffect } from "react";
 
 export default function Root() {
-  const { contacts } = useLoaderData() as {
+  const { contacts, q } = useLoaderData() as {
     contacts: IContact[];
+    q: string | null;
   };
   const navigation = useNavigation();
+
+  useEffect(() => {
+    (
+      document.getElementById("q") as HTMLElement & { value: string | null }
+    ).value = q;
+  }, [q]);
 
   return (
     <>
@@ -25,6 +33,7 @@ export default function Root() {
               placeholder="Search"
               type="search"
               name="q"
+              defaultValue={q!}
             />
             <div id="search-spinner" aria-hidden hidden={true} />
             <div className="sr-only" aria-live="polite"></div>
