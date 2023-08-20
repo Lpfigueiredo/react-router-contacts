@@ -17,3 +17,10 @@ export async function destroyAction({ params }: ActionFunctionArgs) {
   await deleteContact(params.contactId!);
   return redirect("/");
 }
+
+export async function contactAction({ request, params }: ActionFunctionArgs) {
+  const formData = await request.formData();
+  return updateContact(params.contactId!, {
+    favorite: formData.get("favorite") === "true",
+  });
+}

@@ -1,4 +1,4 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, useFetcher } from "react-router-dom";
 import { IContact } from "../contacts";
 
 export default function Contact() {
@@ -56,8 +56,10 @@ export default function Contact() {
 function Favorite({ contact }: { contact: IContact }) {
   // yes, this is a `let` for later
   const favorite = contact.favorite;
+  const fetcher = useFetcher();
+
   return (
-    <Form method="post" action="destroy">
+    <fetcher.Form method="post">
       <button
         name="favorite"
         value={favorite ? "false" : "true"}
@@ -65,6 +67,6 @@ function Favorite({ contact }: { contact: IContact }) {
       >
         {favorite ? "★" : "☆"}
       </button>
-    </Form>
+    </fetcher.Form>
   );
 }
