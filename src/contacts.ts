@@ -58,12 +58,12 @@ export async function deleteContact(id: string) {
   return false;
 }
 
-function set(contacts: unknown) {
+function set(contacts: Contact[]) {
   return localforage.setItem("contacts", contacts);
 }
 
 // fake a cache so we don't slow down stuff we've already seen
-const fakeCache: Record<string, unknown> = {};
+const fakeCache: Record<string, boolean> = {};
 
 async function fakeNetwork(key?: string) {
   if (!key || fakeCache[key]) {
